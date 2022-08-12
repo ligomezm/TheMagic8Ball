@@ -1,4 +1,4 @@
-package com.example.ball8magic.ui.theme
+package com.example.ball8magic.presentation.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
