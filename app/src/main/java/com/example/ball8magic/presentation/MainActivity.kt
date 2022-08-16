@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Ball8MagicTheme {
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -26,6 +27,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Navigation()
                 }
+
             }
         }
     }
