@@ -2,16 +2,48 @@ package com.example.ball8magic.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import com.example.ball8magic.R
 
 // Set of Material typography styles to start with
+
+val TechMonoRegular = FontFamily(
+    Font(R.font.share_tech_mono_regular)
+)
 val Typography = Typography(
+    h1 = TextStyle(
+        fontFamily = TechMonoRegular,
+        fontWeight = FontWeight.Bold,
+        fontSize = 32.sp,
+        color = WhiteTextColor,
+        textAlign = TextAlign.Center,
+        letterSpacing = 2.sp
+    ),
+    h2 = TextStyle(
+        fontFamily = TechMonoRegular,
+        fontWeight = FontWeight.Bold,
+        fontSize = 27.sp,
+        color = WhiteTextColor,
+        textAlign = TextAlign.Center,
+        letterSpacing = 2.sp
+    ),
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = TechMonoRegular,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 20.sp,
+        color = WhiteTextColor,
+        letterSpacing = 2.sp
+    ),
+    button = TextStyle(
+        fontFamily = TechMonoRegular,
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp,
+        color = BlueTextColor,
+        letterSpacing = 1.sp
     )
     /* Other default text styles to override
     button = TextStyle(

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.ball8magic.presentation.ui.MagicBallScreen
+import com.example.ball8magic.presentation.ui.magic_ball.MagicBallScreen
 
 @Composable
 fun Navigation() {
