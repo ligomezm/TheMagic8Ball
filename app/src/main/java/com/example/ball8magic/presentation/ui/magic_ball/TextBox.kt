@@ -4,9 +4,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,7 +15,9 @@ import com.example.ball8magic.presentation.ui.theme.Ball8MagicTheme
 import com.example.ball8magic.presentation.ui.theme.GreenColor
 
 @Composable
-fun TextBox(text: String) {
+fun TextBox() {
+    var innerText by remember { mutableStateOf("") }
+
     Box(
         modifier = Modifier
             .height(170.dp)
@@ -38,7 +40,6 @@ fun TextBox(text: String) {
                     .width(8.dp)
             )
         }
-
         Row(
             modifier = Modifier
                 .height(162.dp)
@@ -56,16 +57,15 @@ fun TextBox(text: String) {
             )
         }
 
-        Text(
-            text = "",
-            style = MaterialTheme.typography.h1,
+        BasicTextField(
+            value = innerText,
+            textStyle = MaterialTheme.typography.h1,
             modifier = Modifier
                 .fillMaxSize()
                 .wrapContentSize(Alignment.Center)
-                .padding(18.dp)
-        )
+                .padding(20.dp),
+            onValueChange = { innerText = it })
     }
-    Text(text = text)
 }
 
 
@@ -73,6 +73,6 @@ fun TextBox(text: String) {
 @Composable
 fun TextBoxPreview() {
     Ball8MagicTheme {
-        TextBox(text = "")
+        TextBox()
     }
 }

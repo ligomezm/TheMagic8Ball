@@ -11,7 +11,7 @@ private val DarkColorPalette = darkColors(
     primaryVariant = WhiteTextColor,
     secondary = BlueTextColor,
 
-)
+    )
 
 private val LightColorPalette = lightColors(
     primary = GreenColor,

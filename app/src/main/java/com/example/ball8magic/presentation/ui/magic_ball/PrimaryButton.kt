@@ -12,17 +12,16 @@ import androidx.compose.ui.unit.dp
 import com.example.ball8magic.presentation.ui.theme.Ball8MagicTheme
 
 @Composable
-fun PrimaryButton(text: String) {
-    val upperCaseText = text.uppercase()
+fun PrimaryButton(text: String, action: () -> Unit) {
 
     Button(
         modifier = Modifier
             .height(45.dp)
             .width(196.dp),
         shape = RoundedCornerShape(10.dp),
-        onClick = {}
+        onClick = { action() }
     ) {
-        Text(upperCaseText)
+        Text(text)
     }
 }
 
@@ -30,6 +29,8 @@ fun PrimaryButton(text: String) {
 @Composable
 fun PrimaryButtonPreview() {
     Ball8MagicTheme {
-        PrimaryButton("nueva pregunta")
+        PrimaryButton("ENVIAR") {
+
+        }
     }
 }

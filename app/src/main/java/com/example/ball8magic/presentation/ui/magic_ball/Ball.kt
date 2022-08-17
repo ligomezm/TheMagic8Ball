@@ -37,21 +37,21 @@ fun Ball() {
     val boxWidthToPx = with(LocalDensity.current) { triangleSurfaceWidth.toPx() }
     val boxHeightToPx = with(LocalDensity.current) { triangleSurfaceHeight.toPx() }
 
-    Box (
+    Box(
         modifier = Modifier
-            .size(285.dp, 278.dp)
+            .size(triangleSurfaceWidth.plus(160.dp), triangleSurfaceHeight.plus(168.dp))
             .clip(shape = CircleShape)
             .background(
                 brush = Brush.radialGradient(
                     colors = listOf(
                         WhiteTextColor, Color.DarkGray, Color.Black),
-                    center = Offset(x= 210f, y= 160f),
+                    center = Offset(x = 210f, y = 160f),
                     radius = 345f,
                 )
             )
             .padding(end = 30.dp, bottom = 12.dp),
         contentAlignment = Alignment.CenterEnd
-    ){
+    ) {
         Box(
             modifier = Modifier
                 .size(191.dp)
