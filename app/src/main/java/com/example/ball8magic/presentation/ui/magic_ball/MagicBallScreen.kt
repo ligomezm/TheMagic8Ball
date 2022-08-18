@@ -11,17 +11,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.ball8magic.R
 import com.example.ball8magic.presentation.ui.theme.Ball8MagicTheme
 
 @Composable
-fun MagicBallScreen(navController: NavController) {
+fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel = hiltViewModel()) {
     var editable by remember { mutableStateOf(false) }
+    var readOnly by remember { mutableStateOf(false) }
+    var innerText by remember { mutableStateOf("") }
+
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -31,9 +36,9 @@ fun MagicBallScreen(navController: NavController) {
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()
-                .blur(30.dp)
-                .scale(1.2F)
-                .rotate(90F)
+                .blur(30.dp),
+//                .scale(1.2F),
+            contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier
@@ -57,8 +62,13 @@ fun MagicBallScreen(navController: NavController) {
             Spacer(
                 modifier = Modifier.height(25.dp)
             )
-
-            TextBox()
+            
+            if (editable) {
+                TextBox(readOnly = true)
+            } else {
+                TextBox(readOnly = false)
+            }
+            
 
             Spacer(
                 modifier = Modifier.height(20.dp)

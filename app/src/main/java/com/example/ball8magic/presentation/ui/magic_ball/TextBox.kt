@@ -11,12 +11,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ball8magic.presentation.ui.theme.Ball8MagicTheme
 import com.example.ball8magic.presentation.ui.theme.GreenColor
 
 @Composable
-fun TextBox() {
-    var innerText by remember { mutableStateOf("") }
+fun TextBox(readOnly: Boolean, viewModel: MagicBallViewModel = hiltViewModel()) {
+
+//    var innerText by remember { mutableStateOf("") }
+    var innerText = viewModel.state
+//    viewModel.updateInnerText("hola")
 
     Box(
         modifier = Modifier
@@ -64,15 +68,17 @@ fun TextBox() {
                 .fillMaxSize()
                 .wrapContentSize(Alignment.Center)
                 .padding(20.dp),
-            onValueChange = { innerText = it })
+            onValueChange = { viewModel.updateInnerText(innerText + it) },
+            readOnly = readOnly
+        )
     }
 }
 
 
-@Preview
-@Composable
-fun TextBoxPreview() {
-    Ball8MagicTheme {
-        TextBox()
-    }
-}
+//@Preview
+//@Composable
+//fun TextBoxPreview() {
+//    Ball8MagicTheme {
+//        TextBox(true)
+//    }
+//}
