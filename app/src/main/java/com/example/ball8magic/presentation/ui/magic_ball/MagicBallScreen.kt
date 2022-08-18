@@ -9,6 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,7 +32,9 @@ fun MagicBallScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize()
                 .blur(30.dp)
-                .scale(1.2F))
+                .scale(1.2F)
+                .rotate(90F)
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -39,23 +42,27 @@ fun MagicBallScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(
-                modifier = Modifier.height(70.dp))
+                modifier = Modifier.height(70.dp)
+            )
 
             AnimatedVisibility(visible = !editable) {
                 if (!editable) {
                     Text(
                         text = "Escribe tu pregunta a continuación",
-                        style = MaterialTheme.typography.h2)
+                        style = MaterialTheme.typography.h2
+                    )
                 }
             }
 
             Spacer(
-                modifier = Modifier.height(25.dp))
+                modifier = Modifier.height(25.dp)
+            )
 
             TextBox()
 
             Spacer(
-                modifier = Modifier.height(20.dp))
+                modifier = Modifier.height(20.dp)
+            )
 
             AnimatedVisibility(visible = !editable) {
                 PrimaryButton(text = "ENVIAR") {

@@ -1,17 +1,115 @@
 buildscript {
+
     ext {
-        compose_version = '1.1.0-beta01'
+        javaCompileVersion = JavaVersion.VERSION_1_8
+        jvmTarget = "1.8"
+        defaultCompileSdkVersion = 32
+        defaultTargetSdkVersion = 32
+        defaultMinSdkVersion = 21
+
+        versions = [
+                androidGradlePlugin  : "7.2.1",
+                kotlin               : "1.7.0",
+                hilt                 : "2.43.2",
+                coreKtx              : "1.8.0",
+                appCompat            : "1.4.2",
+                compose              : "1.2.0",
+                lifecycleRuntimeKtx  : "2.5.1",
+                activityCompose      : "1.5.1",
+                material             : "1.6.1",
+                coroutines           : "1.6.4",
+                okHttp               : "5.0.0-alpha.10",
+                retrofit             : "2.9.0",
+                moshi                : "1.13.0",
+                room                 : "2.5.0-alpha02",
+                datastore            : "1.0.0",
+                viewModel            : "2.5.1",
+                navigationCompose    : "2.5.1",
+                hiltNavigationCompose: "1.0.0",
+                junit                : "4.13.2",
+                mockito              : "4.0.0",
+                espressoJunit        : "1.1.4-alpha07",
+                espressoCore         : "3.5.0-alpha07",
+                androidTestCore      : "1.4.0",
+                orchestrator         : "1.4.2-alpha04"
+        ]
+
+        gradlePlugins = [
+                android: "com.android.tools.build:gradle:${versions.androidGradlePlugin}",
+                kotlin : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+                hilt   : "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
+        ]
+        androidx = [
+                core                   : "androidx.core:core-ktx:${versions.coreKtx}",
+                appCompat              : "androidx.appcompat:appcompat:${versions.appCompat}",
+                composeUi              : "androidx.compose.ui:ui:${versions.compose}",
+                composeMaterial        : "androidx.compose.material:material:${versions.compose}",
+                composeUiToolingPreview: "androidx.compose.ui:ui-tooling-preview:${versions.compose}",
+                lifecycleRuntimeKtx    : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycleRuntimeKtx}",
+                composeActivity        : "androidx.activity:activity-compose:${versions.activityCompose}",
+                viewModelKtx           : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.viewModel}",
+                viewModelCompose       : "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.viewModel}",
+                navigationCompose      : "androidx.navigation:navigation-compose:${versions.navigationCompose}",
+                hiltNavigationCompose  : "androidx.hilt:hilt-navigation-compose:${versions.hiltNavigationCompose}"
+        ]
+        material = [
+                material: "com.google.android.material:material:${versions.material}"
+        ]
+        coroutines = [
+                coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+        ]
+        di = [
+                hiltAndroid : "com.google.dagger:hilt-android:${versions.hilt}",
+                hiltCompiler: "com.google.dagger:hilt-compiler:${versions.hilt}"
+        ]
+        network = [
+                okHttp       : "com.squareup.okhttp3:okhttp:${versions.okHttp}",
+                retrofit     : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                retrofitMoshi: "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+                moshi        : "com.squareup.moshi:moshi:${versions.moshi}",
+                moshiKotlin  : "com.squareup.moshi:moshi-kotlin:${versions.moshi}"
+        ]
+        persistence = [
+                roomRuntime : "androidx.room:room-runtime:${versions.room}",
+                roomKtx     : "androidx.room:room-ktx:${versions.room}",
+                roomCompiler: "androidx.room:room-compiler:${versions.room}",
+                datastore   : "androidx.datastore:datastore-preferences:${versions.datastore}"
+        ]
+        test = [
+                junit     : "junit:junit:${versions.junit}",
+                coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
+                mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}"
+        ]
+        androidTest = [
+                junit             : "androidx.test.ext:junit:${versions.espressoJunit}",
+                espressoCore      : "androidx.test.espresso:espresso-core:${versions.espressoCore}",
+                idlingResource    : "androidx.test.espresso:espresso-idling-resource:${versions.espressoCore}",
+                composeUiTestJunit: "androidx.compose.ui:ui-test-junit4:${versions.compose}",
+                composeManifest   : "androidx.compose.ui:ui-test-manifest:${versions.compose}",
+                hilt              : "com.google.dagger:hilt-android-testing:${versions.hilt}",
+                hiltCompiler      : "com.google.dagger:hilt-android-compiler:${versions.hilt}",
+                core              : "androidx.test:core:${versions.androidTestCore}",
+                runner            : "androidx.test:runner:${versions.androidTestCore}",
+                rules             : "androidx.test:rules:${versions.androidTestCore}",
+                orchestrator      : "androidx.test:orchestrator:${versions.orchestrator}"
+        ]
+
+
     }
+
+    repositories {
+        mavenCentral()
+        google()
+    }
+
+
     dependencies {
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.42"
+        classpath gradlePlugins.android
+        classpath gradlePlugins.kotlin
+        classpath gradlePlugins.hilt
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id 'com.android.application' version '7.2.2' apply false
-    id 'com.android.library' version '7.2.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.5.31' apply false
 
-}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
