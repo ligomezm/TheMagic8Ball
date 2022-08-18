@@ -11,11 +11,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MagicBallViewModel @Inject constructor() : ViewModel() {
 
-    val _state = mutableStateOf("")
-    val state : String = _state.value
+    val innerText = mutableStateOf("")
 
-    fun updateInnerText(text: String) {
-        Log.d("viewModel", text)
-        viewModelScope.launch { _state.value = text }
-    }
 }

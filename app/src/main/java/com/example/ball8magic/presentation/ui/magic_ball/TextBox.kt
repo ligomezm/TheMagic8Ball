@@ -18,9 +18,8 @@ import com.example.ball8magic.presentation.ui.theme.GreenColor
 @Composable
 fun TextBox(readOnly: Boolean, viewModel: MagicBallViewModel = hiltViewModel()) {
 
-//    var innerText by remember { mutableStateOf("") }
-    var innerText = viewModel.state
-//    viewModel.updateInnerText("hola")
+    var innerText by remember { mutableStateOf(viewModel.innerText.value) }
+
 
     Box(
         modifier = Modifier
@@ -52,12 +51,15 @@ fun TextBox(readOnly: Boolean, viewModel: MagicBallViewModel = hiltViewModel()) 
             Spacer(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(8.dp))
+                    .width(8.dp)
+            )
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .border(BorderStroke(4.dp, GreenColor),
-                        shape = RoundedCornerShape(25.dp))
+                    .border(
+                        BorderStroke(4.dp, GreenColor),
+                        shape = RoundedCornerShape(25.dp)
+                    )
             )
         }
 
@@ -68,7 +70,10 @@ fun TextBox(readOnly: Boolean, viewModel: MagicBallViewModel = hiltViewModel()) 
                 .fillMaxSize()
                 .wrapContentSize(Alignment.Center)
                 .padding(20.dp),
-            onValueChange = { viewModel.updateInnerText(innerText + it) },
+            onValueChange = {
+                innerText = it
+                viewModel.innerText.value = innerText
+            },
             readOnly = readOnly
         )
     }
