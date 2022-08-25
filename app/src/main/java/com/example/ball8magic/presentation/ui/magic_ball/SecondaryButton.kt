@@ -20,14 +20,14 @@ import com.example.ball8magic.presentation.ui.theme.Ball8MagicTheme
 fun SecondaryButton(text: String, action: () -> Unit) {
 
     Box(
-        modifier = Modifier.size(200.dp, 45.dp),
+        modifier = Modifier.size(214.dp, 45.dp),
         contentAlignment = Alignment.TopStart
     ) {
         Button(
             onClick = { action() },
             modifier = Modifier
                 .height(38.dp)
-                .width(200.dp),
+                .width(214.dp),
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = MaterialTheme.colors.primary.copy(alpha = 0.7f)),

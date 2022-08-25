@@ -3,6 +3,8 @@ package com.example.ball8magic.presentation.ui.magic_ball
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -23,10 +25,10 @@ import com.example.ball8magic.presentation.ui.theme.Ball8MagicTheme
 
 @Composable
 fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel = hiltViewModel()) {
+
     var editable by remember { mutableStateOf(false) }
     var readOnly by remember { mutableStateOf(false) }
     var innerText by remember { mutableStateOf("") }
-
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -36,18 +38,18 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel 
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()
-                .blur(30.dp),
-//                .scale(1.2F),
+                .scale(1.2F),
             contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 30.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(
-                modifier = Modifier.height(70.dp)
+                modifier = Modifier.height(50.dp)
             )
 
             AnimatedVisibility(visible = !editable) {
@@ -63,15 +65,21 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel 
                 modifier = Modifier.height(25.dp)
             )
             
+//            if (editable) {
+//                TextBox(readOnly = true)
+//            } else {
+//                TextBox(readOnly = false)
+//            }
+
             if (editable) {
-                TextBox(readOnly = true)
+                TextBoxNeonEffect(readOnly = true)
             } else {
-                TextBox(readOnly = false)
+                TextBoxNeonEffect(readOnly = false)
             }
-            
+
 
             Spacer(
-                modifier = Modifier.height(20.dp)
+                modifier = Modifier.height(70.dp)
             )
 
             AnimatedVisibility(visible = !editable) {
@@ -88,6 +96,7 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel 
 
             Spacer(modifier = Modifier.height(34.dp))
             Ball()
+            Spacer(modifier = Modifier.height(34.dp))
         }
     }
 }

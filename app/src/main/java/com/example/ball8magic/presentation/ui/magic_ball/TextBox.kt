@@ -1,6 +1,8 @@
 package com.example.ball8magic.presentation.ui.magic_ball
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,17 +11,24 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.ball8magic.presentation.ui.theme.Ball8MagicTheme
 import com.example.ball8magic.presentation.ui.theme.GreenColor
+import com.example.ball8magic.presentation.ui.theme.GreenColorShadowAccent
+import com.example.ball8magic.presentation.ui.theme.WhiteTextColor
 
 @Composable
 fun TextBox(readOnly: Boolean, viewModel: MagicBallViewModel = hiltViewModel()) {
 
     var innerText by remember { mutableStateOf(viewModel.innerText.value) }
-
 
     Box(
         modifier = Modifier
@@ -35,7 +44,9 @@ fun TextBox(readOnly: Boolean, viewModel: MagicBallViewModel = hiltViewModel()) 
                 modifier = Modifier
                     .fillMaxSize()
                     .weight(1f, true)
-                    .border(BorderStroke(4.dp, GreenColor), shape = RoundedCornerShape(25.dp))
+                    .border(
+                        BorderStroke(4.dp, GreenColor),
+                        shape = RoundedCornerShape(25.dp))
             )
             Spacer(
                 modifier = Modifier
