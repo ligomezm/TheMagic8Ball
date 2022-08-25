@@ -69,11 +69,11 @@ dependencies {
     androidTestImplementation androidTest.runner
     androidTestImplementation androidTest.hilt
     kaptAndroidTest androidTest.hiltCompiler
-    network.retrofit
-    network.okHttp
-    network.retrofitMoshi
-    network.moshi
-    network.moshiKotlin
+    implementation network.retrofit
+    implementation network.okHttp
+    implementation network.retrofitMoshi
+    implementation network.moshi
+    implementation network.moshiKotlin
     androidTestImplementation androidTest.composeUiTestJunit
     debugImplementation androidTest.composeManifest
     androidTestUtil androidTest.orchestrator
