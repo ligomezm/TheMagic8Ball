@@ -1,21 +1,22 @@
 package com.example.ball8magic.domain.usecase
 
-import com.example.ball8magic.common.Resource
 import com.example.ball8magic.domain.entity.Answer
-import com.example.ball8magic.domain.repository.AnswerRespository
+import com.example.ball8magic.domain.repository.AnswerRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import java.io.IOException
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetAnswerUseCase @Inject constructor(private val answerRespository: AnswerRespository) {
-    operator fun invoke(question: String): Flow<Resource<Answer>> = flow{
-        try {
-            emit(Resource.Loading())
-            val answer = answerRespository.getAnswer(question)
-            emit(Resource.Success(answer))
-        } catch (e: IOException) {
-            emit(Resource.Error("Ocurrió un error, vuelve a intentarlo"))
+class GetAnswerUseCase @Inject constructor(
+    configuration: Configuration,
+    private val answerRepository: AnswerRepository
+) : UseCase<GetAnswerUseCase.Request, GetAnswerUseCase.Response>(configuration) {
+
+    override fun process(request: Request): Flow<Response> =
+        answerRepository.getAnswer(request.question).map {
+            Response(it)
         }
-    }
+
+    data class Request(val question: String): UseCase.Request
+    data class Response(val answer: Answer): UseCase.Response
+
 }

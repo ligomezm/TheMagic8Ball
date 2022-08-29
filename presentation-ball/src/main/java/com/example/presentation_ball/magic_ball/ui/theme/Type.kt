@@ -1,0 +1,61 @@
+package com.example.presentation_ball.magic_ball.ui.theme
+
+import androidx.compose.material.Typography
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
+import com.example.presentation_ball.R
+
+
+// Set of Material typography styles to start with
+
+val TechMonoRegular = FontFamily(
+    Font(R.font.share_tech_mono_regular)
+)
+val Typography = Typography(
+    h1 = TextStyle(
+        fontFamily = TechMonoRegular,
+        fontWeight = FontWeight.Bold,
+        fontSize = 32.sp,
+        color = WhiteTextColor,
+        textAlign = TextAlign.Center,
+        letterSpacing = 2.sp
+    ),
+    h2 = TextStyle(
+        fontFamily = TechMonoRegular,
+        fontWeight = FontWeight.Bold,
+        fontSize = 27.sp,
+        color = WhiteTextColor,
+        textAlign = TextAlign.Center,
+        letterSpacing = 2.sp
+    ),
+    body1 = TextStyle(
+        fontFamily = TechMonoRegular,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp,
+        color = WhiteTextColor,
+        letterSpacing = 2.sp
+    ),
+    button = TextStyle(
+        fontFamily = TechMonoRegular,
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp,
+        color = BlueTextColor,
+        letterSpacing = 1.sp
+    )
+    /* Other default text styles to override
+    button = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.W500,
+        fontSize = 14.sp
+    ),
+    caption = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
+    )
+    */
+)

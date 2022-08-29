@@ -6,11 +6,16 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.ball8magic.presentation.ui.theme.Ball8MagicTheme
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.presentation_ball.magic_ball.ui.theme.Ball8MagicTheme
+import com.example.presentation_ball.magic_ball.ui.MagicBallScreen
+import com.example.presentation_common.navigation.NavRoutes
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -26,7 +31,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Navigation()
+                    val navController = rememberNavController()
+                   App(navController)
                 }
             }
         }
@@ -34,14 +40,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+fun App(navController: NavHostController){
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    Ball8MagicTheme {
-        Greeting("Android")
+    NavHost(navController = navController, startDestination = NavRoutes.Ball.route){
+        composable(route = NavRoutes.Ball.route){
+            MagicBallScreen(navController, hiltViewModel())
+        }
+
     }
+
 }
