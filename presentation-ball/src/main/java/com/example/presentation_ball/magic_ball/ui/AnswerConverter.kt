@@ -1,9 +1,21 @@
 package com.example.presentation_ball.magic_ball.ui
 
 import android.content.Context
+import com.example.domain.usecase.GetAnswerUseCase
 import com.example.presentation_common.state.CommonResultConverter
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-//class AnswerConverter @Inject constructor(@ApplicationContext context: Context): CommonResultConverter<GetA , AnswerModel> {
-//}
+
+class AnswerConverter @Inject constructor(@ApplicationContext private val context: Context):
+    CommonResultConverter<GetAnswerUseCase.Response, AnswerModel>() {
+
+    override fun convertSuccess(data: GetAnswerUseCase.Response): AnswerModel {
+        return AnswerModel(
+            data.answer[0].answer,
+            data.answer[0].question,
+            data.answer[0].type
+        )
+
+    }
+}

@@ -12,7 +12,7 @@ class AnswerRepositoryImpl(
     private val remoteAnswerDataSource: RemoteAnswerDataSource
 ): AnswerRepository{
 
-    override fun getAnswer(question: String): Flow<List<Answer>> = remoteAnswerDataSource.getAnswer().onEach {
+    override fun getAnswer(question: String): Flow<List<Answer>> = remoteAnswerDataSource.getAnswer(question).onEach {
         localAnswerDataSource.addAnswer(it)
     }
 

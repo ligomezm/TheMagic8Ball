@@ -16,6 +16,6 @@ class GetAnswerUseCase(
         }
 
     data class Request(val question: String): UseCase.Request
-    data class Response(val answer: Answer): UseCase.Response
+    data class Response(val answer: List<Answer>): UseCase.Response
 
 }
