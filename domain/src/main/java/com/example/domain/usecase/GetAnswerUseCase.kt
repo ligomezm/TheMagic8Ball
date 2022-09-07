@@ -4,8 +4,10 @@ import com.example.domain.entity.Answer
 import com.example.domain.repository.AnswerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class GetAnswerUseCase(
+
+class GetAnswerUseCase @Inject constructor(
     configuration: Configuration,
     private val answerRepository: AnswerRepository
 ) : UseCase<GetAnswerUseCase.Request, GetAnswerUseCase.Response>(configuration) {
