@@ -48,9 +48,12 @@ android {
 
 dependencies {
 
-    implementation project(path: ":domain")
-    implementation project(path: ":presentation-common")
-    implementation project(path: ":presentation-ball")
+    implementation(project(path: ":presentation-ball"))
+    implementation(project(path: ":presentation-common"))
+    implementation(project(path: ":domain"))
+    implementation(project(path: ":data-remote"))
+    implementation(project(path: ":data-local"))
+    implementation(project(path: ":data-repository"))
     implementation androidx.core
     implementation androidx.appCompat
     implementation material.material

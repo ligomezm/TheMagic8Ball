@@ -6,8 +6,9 @@ import com.example.domain.entity.Answer
 import com.example.domain.repository.AnswerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
-class AnswerRepositoryImpl(
+class AnswerRepositoryImpl @Inject constructor(
     private val localAnswerDataSource: LocalAnswerDataSource,
     private val remoteAnswerDataSource: RemoteAnswerDataSource
 ): AnswerRepository{
