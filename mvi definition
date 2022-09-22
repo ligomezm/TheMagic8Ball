@@ -1,0 +1,23 @@
+
+Let's imagine you need to develop a configuration screen for an application. It will load
+the existing configuration and it will need to toggle various switches and prepopulate
+input fields with the existing data. After that data is loaded, then the user can modify each
+of those fields. To achieve this, you would probably need to keep mutable references for
+the data represented in those fields so that when the user changes a value, the reference
+changes.
+
+This may pose a problem because of the mutability of those fields, especially when dealing
+with concurrent operations or their order. A solution to this problem is to make the data
+immutable and combine it into a state that the user interface can observe. Any changes
+the app or user will need to make on the user interfaces will be through a reactive data
+flow. The flow will then create a new state representing the change and update the user
+interface.
+
+This is essentially how MVI operates. In MVI, the View plays the same role as in MVP or
+MVVM and the Model holds the state of the user interface, and it represents the single
+source of truth. The Intent is represented by any changes that should be made to the state,
+which will then be updated. In Figure 9.1, we can see how the View will send an Intent to
+the Model, which will then trigger a change in state, which will update the View:
+
+The term Intent in the context of MVI is different from the Android Intent
+class used to interact with different Android components.

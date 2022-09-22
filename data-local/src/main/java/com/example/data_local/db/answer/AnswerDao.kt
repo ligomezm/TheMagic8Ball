@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface AnswerDao {
 
-    @Query("SELECT * FROM user")
-    fun getUsers(): Flow<List<AnswerEntity>>
+    @Query("SELECT * FROM answer")
+    fun getAnswers(): Flow<List<AnswerEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUsers(users: List<AnswerEntity>)
+    fun insertAnswers(users: List<AnswerEntity>)
 
 }

@@ -14,5 +14,4 @@ class AppModule {
     @Provides
     fun providesUseCaseConfiguration() = UseCase.Configuration(Dispatchers.IO)
 
-
 }
