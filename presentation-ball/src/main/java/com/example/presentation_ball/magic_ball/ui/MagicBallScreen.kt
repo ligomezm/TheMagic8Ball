@@ -1,11 +1,13 @@
 package com.example.presentation_ball.magic_ball.ui
 
-import android.content.Context
 import android.content.Context.SENSOR_SERVICE
 import android.hardware.Sensor
 import android.hardware.SensorManager
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -21,8 +23,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.getSystemService
+import androidx.dynamicanimation.animation.DynamicAnimation
+import androidx.dynamicanimation.animation.SpringAnimation
+import androidx.dynamicanimation.animation.SpringForce
+import androidx.dynamicanimation.animation.springAnimationOf
 import androidx.navigation.NavController
 import com.example.presentation_ball.R
 
@@ -36,7 +40,9 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
     val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as SensorManager
     val sensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
 
-    sensorManager.registerListener(SensorEventListenerImpl(), sensor, SensorManager.SENSOR_DELAY_NORMAL)
+    sensorManager.registerListener(SensorEventListenerImpl(),
+        sensor,
+        SensorManager.SENSOR_DELAY_NORMAL)
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -56,22 +62,20 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
                 .padding(horizontal = 30.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Spacer(
-                modifier = Modifier.height(50.dp)
+                modifier = Modifier.height(40.dp)
             )
 
             AnimatedVisibility(visible = !editable) {
                 if (!editable) {
+
                     Text(
                         text = "Escribe tu pregunta a continuación",
                         style = MaterialTheme.typography.h2
                     )
                 }
             }
-
-            Spacer(
-                modifier = Modifier.height(25.dp)
-            )
 
 //            if (editable) {
 //                TextBox(readOnly = true)
@@ -85,10 +89,7 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
                 TextBoxNeonEffect(readOnly = false, viewModel)
             }
 
-
-            Spacer(
-                modifier = Modifier.height(70.dp)
-            )
+            Spacer(modifier = Modifier.height(70.dp))
 
             AnimatedVisibility(visible = !editable) {
                 PrimaryButton(text = "ENVIAR") {
@@ -96,46 +97,44 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
                 }
             }
 
+            if (!editable) {
+                Spacer(modifier = Modifier.height(34.dp))
+            }
+
+
             AnimatedVisibility(visible = editable) {
                 SecondaryButton(text = "Cambiar pregunta") {
                     editable = false
                 }
-
             }
 
-//            AnimatedVisibility(
-//                visible = editable,
-//                enter = fadeIn(initialAlpha = 0.4f),
-//                exit = fadeOut(animationSpec = tween(durationMillis = 250))
-//            ) {
-//
-//                Text(text = "Shake your phone to get the answer", textAlign = TextAlign.Center)
-//            }
 
-            Spacer(modifier = Modifier.height(34.dp))
             AnimatedVisibility(
                 visible = editable,
                 enter = fadeIn(
                     // Overwrites the initial value of alpha to 0.4f for fade in, 0 by default
 //                    initialAlpha = 0.4f,
-                    animationSpec = tween(durationMillis = 600)
+                    animationSpec = tween(durationMillis = 1200)
                 ),
                 exit = fadeOut(
                     // Overwrites the default animation with tween
-
+                    animationSpec = tween(durationMillis = 600)
                 )
             ) {
                 // Content that needs to appear/disappear goes here:
 
-                Text(text = "Shake your phone to get the answer", textAlign = TextAlign.Center)
+                Text(text = "Shake your phone to get the answer",
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(25.dp))
             }
 
-            Spacer(modifier = Modifier.height(34.dp))
             Ball()
+
             Spacer(modifier = Modifier.height(34.dp))
         }
     }
 }
+
 
 
 //@Preview

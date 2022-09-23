@@ -51,6 +51,7 @@ dependencies {
     implementation androidx.lifecycleRuntimeKtx
     implementation androidx.navigationCompose
     implementation di.hiltAndroid
+    implementation 'androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03'
     kapt di.hiltCompiler
     testImplementation test.junit
     testImplementation test.coroutines
