@@ -1,11 +1,14 @@
 package com.example.presentation_ball.magic_ball.ui
 
-import android.content.Context
 import android.content.Context.SENSOR_SERVICE
 import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -21,10 +24,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.getSystemService
 import androidx.navigation.NavController
 import com.example.presentation_ball.R
+import com.example.presentation_common.state.CommonScreen
 
 @Composable
 fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel) {
@@ -36,7 +38,14 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
     val sensorManager = LocalContext.current.getSystemService(SENSOR_SERVICE) as SensorManager
     val sensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
 
-    sensorManager.registerListener(SensorEventListenerImpl(), sensor, SensorManager.SENSOR_DELAY_NORMAL)
+    sensorManager.registerListener(SensorEventListenerImpl(viewModel), sensor, SensorManager.SENSOR_DELAY_NORMAL)
+
+    viewModel.uiStateFlow.collectAsState().value.let {result ->
+        CommonScreen(state = result) {answerModel ->  
+            
+        }
+    }
+
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -131,7 +140,7 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
             }
 
             Spacer(modifier = Modifier.height(34.dp))
-            Ball()
+            Ball(viewModel)
             Spacer(modifier = Modifier.height(34.dp))
         }
     }
