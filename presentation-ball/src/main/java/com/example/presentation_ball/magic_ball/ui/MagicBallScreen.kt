@@ -42,10 +42,14 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
 
     sensorManager.registerListener(SensorEventListenerImpl(viewModel), sensor, SensorManager.SENSOR_DELAY_NORMAL)
 
-    viewModel.uiStateFlow.collectAsState().value.let {result ->
-        CommonScreen(state = result) {answerModel ->  
-            
-        }
+//    viewModel.uiStateFlow.collectAsState().value.let {result ->
+//        CommonScreen(state = result) {answerModel ->
+//
+//        }
+//    }
+
+    LaunchedEffect("question" ){
+        viewModel.submitAction(AnswerUiAction.Load("quesiton"))
     }
 
 
@@ -111,6 +115,7 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
             AnimatedVisibility(visible = editable) {
                 SecondaryButton(text = "Cambiar pregunta") {
                     editable = false
+
                 }
             }
 

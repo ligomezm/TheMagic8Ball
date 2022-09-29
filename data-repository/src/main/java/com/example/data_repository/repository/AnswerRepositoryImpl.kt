@@ -1,5 +1,6 @@
 package com.example.data_repository.repository
 
+import android.util.Log
 import com.example.data_repository.data_source.local.LocalAnswerDataSource
 import com.example.data_repository.data_source.remote.RemoteAnswerDataSource
 import com.example.domain.entity.Answer
@@ -14,6 +15,7 @@ class AnswerRepositoryImpl @Inject constructor(
 ): AnswerRepository{
 
     override fun getAnswer(question: String): Flow<List<Answer>> = remoteAnswerDataSource.getAnswer(question).onEach {
+        Log.d("repository", it.toString())
         localAnswerDataSource.addAnswer(it)
     }
 

@@ -15,7 +15,6 @@ class SensorEventListenerImpl(viewModel: MagicBallViewModel) : SensorEventListen
         if ((p0?.values?.get(0) ?: 0).toFloat() > 7){
             Log.d("SensorData", (p0?.values?.get(0) ?: "None").toString())
             Log.d("SensorData", "The question is $question")
-            viewModel.loadAnswer(question)
         }
     }
 

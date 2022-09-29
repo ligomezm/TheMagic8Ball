@@ -1,5 +1,6 @@
 package com.example.presentation_ball.magic_ball.ui
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -33,11 +34,12 @@ import com.example.presentation_common.state.CommonScreen
 fun Ball(viewModel: MagicBallViewModel) {
 
     var answer = ""
-    viewModel.uiStateFlow.collectAsState().value.let { result ->
-        CommonScreen(state = result) {
-            answer = it.answer
-        }
-    }
+//    viewModel.uiStateFlow.collectAsState().value.let { result ->
+//        CommonScreen(state = result) {
+//            Log.d("apidata", it.answer)
+//            answer = it.answer
+//        }
+//    }
 
     val invertedTriangleShape = GenericShape { size, _ ->
         moveTo(size.width / 2f, size.height)

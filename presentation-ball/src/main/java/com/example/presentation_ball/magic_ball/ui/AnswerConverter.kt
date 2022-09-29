@@ -16,6 +16,5 @@ class AnswerConverter @Inject constructor(@ApplicationContext private val contex
             data.answer[0].question,
             data.answer[0].type
         )
-
     }
 }

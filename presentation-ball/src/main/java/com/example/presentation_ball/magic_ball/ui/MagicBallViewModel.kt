@@ -25,6 +25,7 @@ class MagicBallViewModel @Inject constructor(
     fun loadAnswer(question: String){
         viewModelScope.launch {
             getAnswerUseCase.execute(GetAnswerUseCase.Request(question)).map {
+                Log.d("viewmodel", it.toString())
                 converter.convert(it)
             }.collect{
                 submitState(it)
@@ -35,7 +36,8 @@ class MagicBallViewModel @Inject constructor(
     override fun handleAction(action: AnswerUiAction) {
         when(action){
             is AnswerUiAction.Load ->{
-                Log.d("viewmodlw", "ok")
+                loadAnswer(action.question)
+                Log.d("viewmodel", "ok")
             }
         }
     }

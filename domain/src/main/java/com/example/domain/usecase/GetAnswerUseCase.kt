@@ -1,5 +1,6 @@
 package com.example.domain.usecase
 
+import android.util.Log
 import com.example.domain.entity.Answer
 import com.example.domain.repository.AnswerRepository
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +15,7 @@ class GetAnswerUseCase @Inject constructor(
 
     override fun process(request: Request): Flow<Response> =
         answerRepository.getAnswer(request.question).map {
+            Log.d("usecase", it.first().toString())
             Response(it)
         }
 
