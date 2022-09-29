@@ -31,13 +31,15 @@ buildscript {
                 espressoJunit          : "1.1.4-alpha07",
                 espressoCore           : "3.5.0-alpha07",
                 androidTestCore        : "1.4.0",
-                orchestrator           : "1.4.2-alpha04"
+                orchestrator           : "1.4.2-alpha04",
+                springAnimation        : "1.0.0"
         ]
 
         gradlePlugins = [
                 android: "com.android.tools.build:gradle:${versions.androidGradlePlugin}",
                 kotlin : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
-                hilt   : "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
+                hilt   : "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}",
+                springAnimation : "androidx.dynamicanimation:dynamicanimation:${versions.springAnimation}"
         ]
         androidx = [
                 core                   : "androidx.core:core-ktx:${versions.coreKtx}",
@@ -107,6 +109,8 @@ buildscript {
         classpath gradlePlugins.android
         classpath gradlePlugins.kotlin
         classpath gradlePlugins.hilt
+        classpath gradlePlugins.springAnimation
+
 
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
