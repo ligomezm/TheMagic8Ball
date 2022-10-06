@@ -3,13 +3,17 @@ package com.example.data_remote.networking.answer
 import com.squareup.moshi.Json
 
 data class AnswerApiModel(
-    @Json(name = "magic") val magic : Magic
+    @field:Json(name = "magic") val magic: Magic
+    //    @Json(name = "magic") val magic : Magic
 )
 
 data class Magic(
-    @Json(name = "question") val question : String,
-    @Json(name = "answer") val answer : String,
-    @Json(name = "type") val type : String
+    val question: String,
+    val answer: String,
+    val type: String
+//    @Json(name = "question") val question : String,
+//    @Json(name = "answer") val answer : String,
+//    @Json(name = "type") val type : String
 )
 
 

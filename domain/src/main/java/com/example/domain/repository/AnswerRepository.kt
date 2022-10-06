@@ -4,5 +4,5 @@ import com.example.domain.entity.Answer
 import kotlinx.coroutines.flow.Flow
 
 interface AnswerRepository {
-    fun getAnswer(question: String) : Flow<List<Answer>>
+    fun getAnswer(question: String) : Flow<Answer>
 }

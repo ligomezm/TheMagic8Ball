@@ -5,5 +5,5 @@ import retrofit2.http.Path
 
 interface AnswerService {
     @GET("JSON/{question}")
-    suspend fun getAnswer(@Path("question") question: String) : List<AnswerApiModel>
+    suspend fun getAnswer( @Path(value = "question", encoded = true) question: String) : AnswerApiModel
 }

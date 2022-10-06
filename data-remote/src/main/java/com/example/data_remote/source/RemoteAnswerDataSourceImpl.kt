@@ -1,5 +1,6 @@
 package com.example.data_remote.source
 
+import android.util.Log
 import com.example.data_remote.networking.answer.AnswerApiModel
 import com.example.data_remote.networking.answer.AnswerService
 import com.example.data_repository.data_source.remote.RemoteAnswerDataSource
@@ -11,17 +12,22 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+
 class RemoteAnswerDataSourceImpl @Inject constructor(
     private val answerService: AnswerService
 ) : RemoteAnswerDataSource{
 
-    override fun getAnswer(question: String): Flow<List<Answer>> = flow {
+    override fun getAnswer(question: String): Flow<Answer> = flow {
         emit(answerService.getAnswer(question))
     }.map { answers ->
-        answers.map {
-            convert(it)
-        }
+        Log.d("api", answers.toString())
+        convert(answers)
+//        answers.map {
+//            Log.d("api", it.toString())
+//            convert(it)
+//        }
     }.catch {
+        Log.d("api", it.toString())
         throw UseCaseException.AnswerException(it)
     }
 

@@ -2,11 +2,8 @@ package com.example.presentation_ball.magic_ball.ui
 
 import android.content.Context.SENSOR_SERVICE
 import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.compose.animation.AnimatedVisibility
-
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -27,7 +24,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.presentation_ball.R
-import com.example.presentation_common.state.CommonScreen
 
 @Composable
 fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel) {
@@ -40,7 +36,11 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
     val sensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
 
 
-    sensorManager.registerListener(SensorEventListenerImpl(viewModel), sensor, SensorManager.SENSOR_DELAY_NORMAL)
+    sensorManager.registerListener(
+        SensorEventListenerImpl(viewModel),
+        sensor,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
 //    viewModel.uiStateFlow.collectAsState().value.let {result ->
 //        CommonScreen(state = result) {answerModel ->
@@ -48,7 +48,7 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
 //        }
 //    }
 
-    LaunchedEffect("question" ){
+    LaunchedEffect("question") {
         viewModel.submitAction(AnswerUiAction.Load("quesiton"))
     }
 
@@ -134,9 +134,11 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
             ) {
                 // Content that needs to appear/disappear goes here:
 
-                Text(text = "Shake your phone to get the answer",
+                Text(
+                    text = "Shake your phone to get the answer",
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(25.dp))
+                    modifier = Modifier.padding(25.dp)
+                )
             }
 
             Spacer(modifier = Modifier.height(34.dp))
@@ -148,7 +150,6 @@ fun MagicBallScreen(navController: NavController, viewModel: MagicBallViewModel)
         }
     }
 }
-
 
 
 //@Preview

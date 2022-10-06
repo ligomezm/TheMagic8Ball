@@ -12,9 +12,9 @@ class AnswerConverter @Inject constructor(@ApplicationContext private val contex
 
     override fun convertSuccess(data: GetAnswerUseCase.Response): AnswerModel {
         return AnswerModel(
-            data.answer[0].answer,
-            data.answer[0].question,
-            data.answer[0].type
+            data.answer.answer,
+            data.answer.question,
+            data.answer.type
         )
     }
 }

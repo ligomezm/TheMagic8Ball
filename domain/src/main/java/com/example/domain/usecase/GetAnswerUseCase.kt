@@ -15,11 +15,11 @@ class GetAnswerUseCase @Inject constructor(
 
     override fun process(request: Request): Flow<Response> =
         answerRepository.getAnswer(request.question).map {
-            Log.d("usecase", it.first().toString())
+            Log.d("usecase", it.toString())
             Response(it)
         }
 
     data class Request(val question: String): UseCase.Request
-    data class Response(val answer: List<Answer>): UseCase.Response
+    data class Response(val answer: Answer): UseCase.Response
 
 }

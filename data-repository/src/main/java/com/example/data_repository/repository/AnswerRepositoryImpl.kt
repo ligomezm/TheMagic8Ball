@@ -14,9 +14,6 @@ class AnswerRepositoryImpl @Inject constructor(
     private val remoteAnswerDataSource: RemoteAnswerDataSource
 ): AnswerRepository{
 
-    override fun getAnswer(question: String): Flow<List<Answer>> = remoteAnswerDataSource.getAnswer(question).onEach {
-        Log.d("repository", it.toString())
-        localAnswerDataSource.addAnswer(it)
-    }
+    override fun getAnswer(question: String): Flow<Answer> = remoteAnswerDataSource.getAnswer(question)
 
 }
